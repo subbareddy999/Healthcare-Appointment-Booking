@@ -7,7 +7,7 @@ const PORT = 5000;
 
 app.use(cors());
 app.use(express.json());
-// --- Mock Data ---
+// -- Mock Data --
 const doctors = [
     {
         id: 1,
@@ -240,8 +240,7 @@ const doctors = [
         about: 'Dr. James Wright is a renowned cardiologist specializing in interventional procedures to treat heart disease and improve patient outcomes.'
     }
 ];
-
-// --- API Endpoints ---
+// -- API Endpoints --
 app.get('/api/doctors', (req, res) => {
     res.json(doctors);
 });
