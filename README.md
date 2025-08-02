@@ -6,6 +6,8 @@ A full-stack web application built using the **MERN** stack that simplifies the 
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge\&logo=nodedotjs\&logoColor=white)
 ![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge\&logo=express\&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge\&logo=tailwind-css\&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/FramerMotion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
+
 
 ---
 
@@ -20,6 +22,48 @@ A full-stack web application built using the **MERN** stack that simplifies the 
 * 📱 **Responsive Design**: Optimized for mobile, tablet, and desktop screens.
 
 ---
+
+## ✨ Key Features & Improvements Added
+
+I focused on enhancing the user experience, modernizing the UI, and adding valuable new features.
+
+### 🎨 UI/UX Overhaul
+
+- **Global Font Update**: Replaced all fonts with **Poppins** for a modern look.
+- **Glassmorphism Header**: Sticky, semi-transparent floating header.
+
+#### Homepage Improvements:
+- Added a bold **hero section**.
+- Combined search + filters into a floating control panel.
+- Redesigned **Doctor Cards** with star ratings and animations via **Framer Motion**.
+
+#### Doctor Profile Page:
+- Split layout: **Doctor Info** & **Booking** sections.
+- Replaced dropdowns with clickable **date-first, then time** UI.
+
+#### Booking Modal:
+- Redesigned modal with icon, smooth entrance/exit animations.
+- Added **inline validation feedback**.
+
+#### Footer:
+- Added a comprehensive, professional footer with navigation links and disclaimers.
+
+#### New Components:
+- Custom **404 page**.
+- **Scroll-to-Top** button for smoother navigation.
+
+---
+
+## ⚙️ Core Functional Enhancements
+- **Smart Availability Logic**: Past time slots are automatically disabled.
+
+### My Appointments Section:
+- Appointments categorized into **Upcoming** and **Past**.
+- Users can now **cancel** upcoming appointments.
+- Added **Add to Calendar** with Google Calendar link generator.
+
+---
+
 
 ## 🛠️ Tech Stack
 
@@ -50,8 +94,12 @@ Healthcare-Appointment-Booking/
     │   │   ├── SkeletonCard.jsx
     │   │   ├── DoctorProfilePage.jsx
     │   │   ├── HomePage.jsx
+    │   │   ├── Footer.jsx
+    │   │   ├── NotFoundPage.jsx
+    │   │   ├── ScrollToTop.jsx
     │   │   └── MyAppointmentsPage.jsx
     │   ├── App.jsx
+    │   ├── App.css
     │   ├── index.css
     │   └── main.jsx
     ├── tailwind.config.js
@@ -122,20 +170,32 @@ http://localhost:5173
 
 ## 🧠 Challenges & Solutions
 
-### 1. Preventing Double Booking
+### 🐛 Challenges Faced & Solutions
 
-**Issue:** Static time slots could be booked multiple times.
-**Solution:** Booked slots are stored in `localStorage` and dynamically excluded during selection.
+### 1. Preventing Double Booking
+- **Issue**: Static time slots could be booked multiple times.
+- **Solution**: Booked slots are stored in `localStorage` and dynamically excluded during selection.
 
 ### 2. Backend Validation Issues
-
-**Issue:** API calls were missing required fields like `doctorId`.
-**Solution:** Updated booking logic to ensure all necessary data is passed and validated.
+- **Issue**: API calls were missing required fields like `doctorId`.
+- **Solution**: Updated booking logic to ensure all necessary data is passed and validated.
 
 ### 3. Lack of User Feedback
+- **Issue**: Users didn’t receive feedback after actions like booking success or failure.
+- **Solution**: Integrated `react-hot-toast` with `promise`-based notifications to provide clear and timely feedback.
 
-**Issue:** No feedback for actions like booking success/failure.
-**Solution:** Integrated `react-hot-toast` with `promise`-based notifications for better UX.
+### 4. Double-Booking Due to Stale State
+- **Issue**: After booking, the same slot could still be selected because the UI didn’t refresh properly.
+- **Solution**: Added `isModalOpen` to the `useEffect` dependency array and refreshed booking data once the modal closes.
+
+### 5. Incorrect Scroll Position on Navigation
+- **Issue**: Navigating from long pages caused the next page to load with the scroll already at the bottom.
+- **Solution**: Created a `ScrollToTop` component using `useLocation` from `react-router-dom` to auto-scroll to top on route changes.
+
+### 6. Custom Font Not Applying
+- **Issue**: The "Poppins" font wasn’t rendering in the application.
+- **Solution**: Removed the `<link>` tag from `index.html` and properly imported the font in `index.css`, which is then loaded through `main.jsx`—a more reliable method in Vite.
+
 
 ---
 
